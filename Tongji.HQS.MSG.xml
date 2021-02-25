@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2017.2.2 (Build 865U)" ts="2021-02-25 10:19:33">
+<Class name="Tongji.HQS.MSG.ResponseDatasetMessage">
+<Super>Ens.Response</Super>
+<TimeChanged>65566,63652.650504</TimeChanged>
+<TimeCreated>63755,39735.09322</TimeCreated>
+
+<Property name="MessageHeader">
+<Type>Tongji.HQS.MSG.ResponseMessageHeader</Type>
+</Property>
+
+<Property name="MessageBody">
+<Type>Tongji.HQS.MSG.ResponseMessageBody</Type>
+</Property>
+
+<Method name="%OnNew">
+<FormalSpec>EventType:%String,ResultCode:%String</FormalSpec>
+<Private>1</Private>
+<ReturnType>%Status</ReturnType>
+<ServerOnly>1</ServerOnly>
+<Implementation><![CDATA[
+	set ..MessageHeader=##class(Tongji.HQS.MSG.ResponseMessageHeader).%New()
+	set ..MessageHeader.Sender="ENS"
+	set ..MessageHeader.SendTime=##class(Ens.Util.FunctionSet).CurrentDateTime("%q")
+	set ..MessageHeader.MsgId=##class(%SYSTEM.Util).CreateGUID()
+	set ..MessageHeader.EventType=EventType
+	set ..MessageBody=##class(Tongji.HQS.MSG.ResponseMessageBody).%New()
+	set ..MessageBody.Result=##class(Tongji.HQS.MSG.Result).%New()
+	set ..MessageBody.Result.Code=ResultCode
+	Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DefaultData>ResponseDatasetMessageDefaultData</DefaultData>
+<Data name="ResponseDatasetMessageDefaultData">
+<Subscript>"ResponseDatasetMessage"</Subscript>
+<Value name="1">
+<Value>MessageHeader</Value>
+</Value>
+<Value name="2">
+<Value>MessageBody</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="Tongji.HQS.MSG.ResponseMessageBody">
+<Super>Ens.Response</Super>
+<TimeChanged>64264,60756.451979</TimeChanged>
+<TimeCreated>63755,39817.565229</TimeCreated>
+
+<Property name="Result">
+<Type>Tongji.HQS.MSG.Result</Type>
+</Property>
+
+<Property name="Dataset">
+<Type>%GlobalCharacterStream</Type>
+<Parameter name="CONTENT" value="MIXED"/>
+</Property>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DefaultData>ResponseMessageBodyDefaultData</DefaultData>
+<Data name="ResponseMessageBodyDefaultData">
+<Subscript>"ResponseMessageBody"</Subscript>
+<Value name="1">
+<Value>Result</Value>
+</Value>
+<Value name="2">
+<Value>Dataset</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="Tongji.HQS.MSG.ResponseMessageHeader">
+<Super>Ens.Response</Super>
+<TimeChanged>64287,32962</TimeChanged>
+<TimeCreated>63755,39595.676235</TimeCreated>
+
+<Property name="Sender">
+<Type>%String</Type>
+</Property>
+
+<Property name="Receiver">
+<Type>%String</Type>
+</Property>
+
+<Property name="SendTime">
+<Type>%String</Type>
+</Property>
+
+<Property name="EventType">
+<Type>%String</Type>
+</Property>
+
+<Property name="MsgId">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DefaultData>ResponseMessageHeaderDefaultData</DefaultData>
+<Data name="ResponseMessageHeaderDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"ResponseMessageHeader"</Subscript>
+<Value name="1">
+<Value>Sender</Value>
+</Value>
+<Value name="2">
+<Value>Receiver</Value>
+</Value>
+<Value name="3">
+<Value>SendTime</Value>
+</Value>
+<Value name="4">
+<Value>EventType</Value>
+</Value>
+<Value name="5">
+<Value>MsgId</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="Tongji.HQS.MSG.Result">
+<Super>Ens.Response</Super>
+<TimeChanged>64287,32962</TimeChanged>
+<TimeCreated>63755,39817.565229</TimeCreated>
+
+<Property name="Code">
+<Type>%String</Type>
+</Property>
+
+<Property name="Desc">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DefaultData>ResultDefaultData</DefaultData>
+<Data name="ResultDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"Result"</Subscript>
+<Value name="1">
+<Value>Code</Value>
+</Value>
+<Value name="2">
+<Value>Desc</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+</Export>
