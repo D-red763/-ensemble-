@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element minOccurs="0" maxOccurs="1" name="Request" type="RequestMessage"/>
+  <xs:element minOccurs="0" maxOccurs="1" name="Response" type="ResponseMessage"/>
+   <xs:complexType name="RequestMessage">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="MessageHeader" type="MessageHeader"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="MessageBody" type="MessageBody"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseMessage">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="MessageHeader" type="MessageHeader"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="MessageBody" type="ResponseMessageBody"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageHeader">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Sender" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Receiver" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SendTime" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EventType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MsgId" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageBody">
+    <xs:sequence>
+	<xs:any minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestMessageBody">
+    <xs:sequence>	   
+        <xs:element minOccurs="0" maxOccurs="1" name="PatientId" type="xs:string"/>
+		<xs:element minOccurs="0" maxOccurs="1" name="PatientType" type="xs:string"/>
+		<xs:element minOccurs="0" maxOccurs="1" name="HospitalArea" type="xs:string"/>
+		<xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string"/>
+		<xs:element minOccurs="0" maxOccurs="1" name="PatientSex" type="xs:string"/>
+		<xs:element minOccurs="0" maxOccurs="1" name="PatientBirth" type="xs:string"/>
+		<xs:element minOccurs="0" maxOccurs="1" name="PatientAge" type="xs:string"/>
+		<xs:element minOccurs="0" maxOccurs="1" name="RcptNO" type="xs:string"/>
+		<xs:element minOccurs="0" maxOccurs="1" name="CardNO" type="xs:string"/>
+		<xs:element minOccurs="0" maxOccurs="1" name="FPNO" type="xs:string"/>
+		<xs:element minOccurs="1" maxOccurs="1" name="MedPresinfoList" type="MedPresinfoList"/>
+		<xs:any minOccurs="0"/> 
+    </xs:sequence>
+	</xs:complexType>
+  <xs:complexType name="ResponseMessageBody">
+    <xs:sequence>	   
+      <xs:element minOccurs="1" maxOccurs="1" name="Result" type="Result"/>    
+      <xs:any minOccurs="0"/> 
+    </xs:sequence>
+  </xs:complexType>  
+<xs:complexType name="Result">
+    <xs:sequence>	   
+      <xs:element minOccurs="1" maxOccurs="1" name="Code" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="Desc" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
